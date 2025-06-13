@@ -47,12 +47,17 @@ solar-tracker-dashboard/dashboard/static/assets/images/** linguist-vendored=true
 README*.md linguist-documentation=true
 
 # Highlight core project languages
-*.ino linguist-language=Arduino
+*.ino linguist-language=C++
+*.cpp linguist-language=C++
+*.c linguist-language=C
+*.h linguist-language=C++
+*.hpp linguist-language=C++
 *.py linguist-language=Python
 *.html linguist-language=HTML
 
-# Force detection of Arduino files
-solarus.ino linguist-language=Arduino linguist-vendored=false
+# Force detection of Arduino files as C++
+solarus.ino linguist-language=C++ linguist-vendored=false
+*.ino linguist-vendored=false
 
 # Ensure custom JavaScript files are counted (override vendored marking for custom files)
 **/transformacion.js linguist-vendored=false
