@@ -61,6 +61,38 @@ Software:
 - Chart.js para visualización
 ```
 
+### Configuración de Credenciales
+
+#### 1. Configura el Firmware del ESP32
+
+Edita `solarus.ino` y reemplaza los siguientes valores por tus credenciales reales:
+```cpp
+#define WIFI_SSID "TU_WIFI_SSID"                  // Nombre de tu red WiFi
+#define WIFI_PASSWORD "TU_WIFI_PASSWORD"          // Contraseña de tu WiFi
+#define DATABASE_SECRET "TU_FIREBASE_API_KEY"     // API key de tu proyecto Firebase
+```
+
+#### 2. Configura Variables de Entorno en Django
+
+Crea un archivo llamado `solar-tracker-dashboard/.env` con el siguiente contenido:
+```env
+DJANGO_SECRET_KEY=tu-clave-secreta-generada
+DEBUG=True
+FIREBASE_DATABASE_URL=https://tu-proyecto-id-default-rtdb.firebaseio.com/
+```
+
+Genera una clave secreta segura para Django:
+```bash
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
+#### 3. Agrega la Cuenta de Servicio de Firebase
+
+Descarga la clave de cuenta de servicio de Firebase y guárdala como:
+```
+solar-tracker-dashboard/firebase_config.json
+```
+
 ### Montaje de Hardware
 
 1. **Montaje del Circuito**:
@@ -88,7 +120,6 @@ Software:
 2. **Configuración del Firmware ESP32**:
     - Instalar Arduino IDE con soporte para ESP32.
     - Instalar librerías: `FirebaseClient`, `ESP32Servo`, `WiFi`.
-    - Configurar credenciales WiFi y parámetros de Firebase en `solarus.ino`.
     - Subir firmware al ESP32.
 
 3. **Configuración del Panel Django**:

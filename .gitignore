@@ -1,1 +1,46 @@
+# macOS system files
 /.DS_Store
+.DS_Store
+
+# Environment files - Never commit these
+.env
+.env.local
+.env.production
+.env.staging
+
+# Firebase configuration - Contains sensitive keys
+firebase_config.json
+**/firebase_config.json
+
+# Arduino/ESP32 local configurations
+arduino_secrets.h
+config.h
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Python bytecode (from Django subdirectory)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+=n$hd5g%=(@ygna$bmmw3p5qm*93zx$m@ip$!j6i0&_q%d+wv'
+# For production, set this environment variable or use a secure method to generate it
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-change-this-key-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
 
 
 # Application definition
@@ -128,12 +130,24 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-from firebase_admin import credentials, initialize_app, db
-
-cred = credentials.Certificate("firebase_config.json")
-app = initialize_app(cred, {
-    'databaseURL': 'https://nuevoiot-e7f97-default-rtdb.firebaseio.com/'
-})
+# Firebase Configuration
+# Make sure to set your Firebase configuration securely
+try:
+    import firebase_admin
+    from firebase_admin import credentials
+    from firebase_admin import db
+    
+    # Use environment variable for Firebase config path, fallback to default
+    firebase_config_path = os.environ.get('FIREBASE_CONFIG_PATH', 'firebase_config.json')
+    firebase_db_url = os.environ.get('FIREBASE_DATABASE_URL', 'https://your-firebase-project-default-rtdb.firebaseio.com/')
+    
+    if os.path.exists(firebase_config_path):
+        cred = credentials.Certificate(firebase_config_path)
+        app = firebase_admin.initialize_app(cred, {
+            'databaseURL': firebase_db_url
+        })
+    else:
+        print(f"Warning: Firebase config file not found at {firebase_config_path}")
+        print("Please ensure firebase_config.json exists or set FIREBASE_CONFIG_PATH environment variable")
+except ImportError:
+    print("Warning: firebase_admin not installed. Install with: pip install firebase-admin")

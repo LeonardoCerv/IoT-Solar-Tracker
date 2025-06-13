@@ -28,10 +28,17 @@
 // =============================================================================
 // NETWORK AND FIREBASE CONFIGURATION
 // =============================================================================
-#define WIFI_SSID "ESP32"                                                      // WiFi network name
-#define WIFI_PASSWORD "1234567890"                                             // WiFi password
-#define DATABASE_URL "https://nuevoiot-e7f97-default-rtdb.firebaseio.com"      // Firebase Realtime Database URL
-#define DATABASE_SECRET "AIzaSyB1iskFoDhNmdFPig6Eje1DE_IcH9K0dyo"              // Firebase database secret key
+// =============================================================================
+// WIFI AND FIREBASE CONFIGURATION
+// =============================================================================
+// IMPORTANT: Replace these placeholder values with your actual credentials
+// For security, consider storing sensitive values in a separate config file
+// that is not committed to version control
+
+#define WIFI_SSID "YOUR_WIFI_SSID"                                             // Replace with your WiFi network name
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"                                     // Replace with your WiFi password
+#define DATABASE_URL "https://your-firebase-project-default-rtdb.firebaseio.com" // Replace with your Firebase Database URL
+#define DATABASE_SECRET "YOUR_FIREBASE_API_KEY"                                // Replace with your Firebase database secret key
 
 // =============================================================================
 // HARDWARE PIN DEFINITIONS

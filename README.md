@@ -78,6 +78,38 @@ Software:
 
 2. **Sensor Positioning**: Mount LDR sensors in a cross pattern to ensure comprehensive light detection coverage
 
+### Credentials Setup
+
+#### 1. Configure ESP32 Firmware
+
+Edit `solarus.ino` and update the following placeholders with your actual credentials:
+```cpp
+#define WIFI_SSID "YOUR_WIFI_SSID"             // Your WiFi network name
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"     // Your WiFi password
+#define DATABASE_SECRET "YOUR_FIREBASE_API_KEY" // Your Firebase API key
+```
+
+#### 2. Set Up Django Environment Variables
+
+Create a file named `solar-tracker-dashboard/.env` with the following content:
+```env
+DJANGO_SECRET_KEY=your-generated-secret-key
+DEBUG=True
+FIREBASE_DATABASE_URL=https://your-project-id-default-rtdb.firebaseio.com/
+```
+
+Generate a secure Django secret key:
+```bash
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
+#### 3. Add Firebase Service Account
+
+Download your Firebase service account key and save it as:
+```
+solar-tracker-dashboard/firebase_config.json
+```
+
 ### Software Installation
 
 1. **Clone the Repository**:
@@ -89,7 +121,6 @@ Software:
 2. **ESP32 Firmware Setup**:
    - Install Arduino IDE with ESP32 board support
    - Install required libraries: `FirebaseClient`, `ESP32Servo`, `WiFi`
-   - Configure WiFi credentials and Firebase settings in `solarus.ino`
    - Upload firmware to ESP32
 
 3. **Django Dashboard Setup**:
