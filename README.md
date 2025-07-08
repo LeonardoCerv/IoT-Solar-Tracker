@@ -10,6 +10,8 @@
 
 SOLARUS is an autonomous solar tracking system that uses four strategically positioned Light Dependent Resistors (LDRs) to detect the optimal sun position and automatically adjusts a solar panel's orientation using dual-axis servo motors. The system continuously logs sensor data to Firebase and provides real-time monitoring through a professional Django-based web dashboard.
 
+This project combines microcontroller programming with arduino, cloud data management, and real-time web visualization. It demonstrates the integration of hardware control, sensor data processing, and full-stack web development.
+
 ### Key Technical Achievements
 
 - **Intelligent Light Detection Algorithm**: Developed a custom algorithm that analyzes multiple LDR sensor readings to determine optimal panel positioning, including interpolation between sensors for precise tracking
